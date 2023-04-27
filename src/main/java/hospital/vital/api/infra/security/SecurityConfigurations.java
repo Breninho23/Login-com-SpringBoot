@@ -37,6 +37,7 @@ public class SecurityConfigurations {
         //.requestMatchers(HttpMethod.DELETE, "/pacientes").hasRole("ADMIN")
 
         return http.csrf().disable()
+                .cors().and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeHttpRequests()
                 .requestMatchers(HttpMethod.POST, "/login").permitAll()
