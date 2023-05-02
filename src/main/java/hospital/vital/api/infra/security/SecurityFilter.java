@@ -30,11 +30,9 @@ public class SecurityFilter extends OncePerRequestFilter {
         //O Envio de um token é realizado em um cabeçalho do Protocolo HTTP
         //Cabeçalho Autorization
         var tokenJWT = recuperarToken(request);
-
         if(tokenJWT != null){
             var subject = tokenService.getSubject(tokenJWT);
             var usuario = repository.findByLogin(subject);
-
             var authentication = new UsernamePasswordAuthenticationToken(usuario, null , usuario.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
             System.out.println(subject);

@@ -32,7 +32,7 @@ public class AutenticacaoController {
         var authentication = manager.authenticate(authenticationToken);
 
         var tokenJWT = tokenService.gerarToken((Usuario) authentication.getPrincipal());
-        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT));
+        return ResponseEntity.ok(new DadosTokenJWT(tokenJWT, ((Usuario) authentication.getPrincipal()).getId(), ((Usuario) authentication.getPrincipal()).getNome()));
     }
 
 }
